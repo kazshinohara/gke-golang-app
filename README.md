@@ -1,4 +1,4 @@
-# Hello App example
+# GKE Golang App
 
 This example shows how to build and deploy a containerized Go web server
 application using [Google kubernetes Engine](https://cloud.google.com/kubernetes-engine/) (a.k.a GKE).
