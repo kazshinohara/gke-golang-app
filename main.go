@@ -79,8 +79,8 @@ func initTrace(){
 	}
 }
 
-// hello responds to the request with a plain-text "Hello, world" message.
 func hello(w http.ResponseWriter, r *http.Request) {
+	// hello responds to the request with "Hello, world".
 	log.Printf("Serving request: %s", r.URL.Path)
 	ctx := r.Context()
 	_, span := trace.StartSpan(ctx, "hello")
@@ -90,8 +90,8 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hostname: %s\n", host)
 }
 
-// hello responds to the request but a bit slow
 func slowHello(w http.ResponseWriter, r *http.Request) {
+	// hello responds to the request as well but a bit slow.
 	log.Printf("Serving request: %s", r.URL.Path)
 	ctx := r.Context()
 	ctx, span := trace.StartSpan(ctx,"slowHello")
