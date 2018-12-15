@@ -86,7 +86,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	_, span := trace.StartSpan(ctx, "hello")
 	defer span.End()
 	host, _ := os.Hostname()
-	fmt.Fprintf(w, "Hello, Osaka!\n")
+	fmt.Fprintf(w, "Hello, world!\n")
 	fmt.Fprintf(w, "Hostname: %s\n", host)
 }
 
