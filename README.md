@@ -2,7 +2,7 @@
 
 This example shows how to build and deploy a containerized Go web server
 application using [Google kubernetes Engine](https://cloud.google.com/kubernetes-engine/) (a.k.a GKE).
-Also this application enables Stackdriver profiler, trace and debug.
+Also this application enables Stackdriver [profiler](https://cloud.google.com/profiler/), [trace](https://cloud.google.com/trace/) and [debug](https://cloud.google.com/debugger/).
 
 This repository contains:
 
