@@ -18,11 +18,12 @@ package main
 
 import (
 	"context"
-	"contrib.go.opencensus.io/exporter/stackdriver"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
+
+	"contrib.go.opencensus.io/exporter/stackdriver"
 
 	"cloud.google.com/go/profiler"
 	"go.opencensus.io/trace"
@@ -51,13 +52,13 @@ func main() {
 	log.Fatal(nerr)
 }
 
-func initProfiler(){
+func initProfiler() {
 	// Stackdriver Profiler initialization.
 	if err := profiler.Start(profiler.Config{
 		Service:        "hello-app",
 		ServiceVersion: "1.0.0",
-		ProjectID: os.Getenv("GOOGLE_CLOUD_PROJECT"),
-		DebugLogging: true,
+		ProjectID:      os.Getenv("GOOGLE_CLOUD_PROJECT"),
+		DebugLogging:   true,
 	}); err != nil {
 		log.Printf("failed to start profiler: %+v", err)
 	} else {
@@ -65,7 +66,7 @@ func initProfiler(){
 	}
 }
 
-func initTrace(){
+func initTrace() {
 	// Stackdriver Tracer initialization.
 	exporter, err := stackdriver.NewExporter(stackdriver.Options{
 		ProjectID: os.Getenv("GOOGLE_CLOUD_PROJECT"),
@@ -86,7 +87,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	_, span := trace.StartSpan(ctx, "hello")
 	defer span.End()
 	host, _ := os.Hostname()
-	fmt.Fprintf(w, "Hello, world!\n")
+	fmt.Fprintf(w, "Hello, world!!!!!!\n")
 	fmt.Fprintf(w, "Hostname: %s\n", host)
 }
 
@@ -94,7 +95,7 @@ func slowHello(w http.ResponseWriter, r *http.Request) {
 	// hello responds to the request as well but a bit slow.
 	log.Printf("Serving request: %s", r.URL.Path)
 	ctx := r.Context()
-	ctx, span := trace.StartSpan(ctx,"slowHello")
+	ctx, span := trace.StartSpan(ctx, "slowHello")
 	defer span.End()
 	fibonacci(ctx)
 	host, _ := os.Hostname()
@@ -110,4 +111,5 @@ func fibonacci(ctx context.Context) {
 		prev, next = next, prev+next
 	}
 }
+
 // [END all]
